@@ -43,6 +43,25 @@ function logIn(credentials){
     })
 }
 
+// sign up
+
+function signUp(userInfo) {
+	return clientAuth({
+        method: 'post',
+        url: '/api/users',
+        data: userInfo
+    }).then(res => {
+        console.log(res)
+		const token = res.data.token
+		if(token) {
+			clientAuth.defaults.headers.common.token = setToken(token)
+			return jwtDecode(token)
+		} else {
+			return false
+		}
+	})
+}
+
 // logout
 
 function logOut(){
@@ -54,5 +73,6 @@ function logOut(){
 export default {
     getCurrentUser,
     logIn,
-    logOut
+    logOut,
+    signUp
 }

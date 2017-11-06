@@ -29,7 +29,7 @@ class LogIn extends React.Component {
 			})
 			if (user) {
 				this.props.onLoginSuccess()
-				this.props.history.push('/')
+				this.props.history.push('/profile')
 			}
 		})
 	}
