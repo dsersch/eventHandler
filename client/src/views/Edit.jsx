@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 
 class EditProfile extends React.Component{
     constructor(props){
@@ -23,6 +24,24 @@ class EditProfile extends React.Component{
 
     onFormSubmit(evt){
         evt.preventDefault()
+        axios({
+            method: 'patch',
+            url: `/api/users/${this.props.currentUser._id}`,
+            data: this.state.fields
+        }).then((user)=>{
+            this.setState({ 
+                fields: { 
+                    name: '', 
+                    email: '', 
+                    password: '' 
+               }
+           })
+           if (user) {
+               console.log(user)
+               this.props.onUpdateSuccess(user)
+               this.props.history.push('/profile')
+           }
+        })
     }
     
     render(){
@@ -34,7 +53,7 @@ class EditProfile extends React.Component{
 					<input type="text" placeholder="Name" name="name" defaultValue={name} />
 					<input type="text" placeholder="Email" name="email" defaultValue={email} />
 					<input type="password" placeholder="Password" name="password" defaultValue={password} />
-					<button>Log In</button>
+					<button>Update</button>
 				</form>
             </div>
         )

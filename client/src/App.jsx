@@ -9,6 +9,7 @@ import SignUp from './views/SignUp'
 import Home from './views/Home'
 import Show from './views/Show'
 import EditProfile from './views/Edit'
+import Delete from './views/Delete'
 
 class App extends React.Component {
 	state = {
@@ -55,9 +56,14 @@ class App extends React.Component {
 						? <Show currentUser={currentUser} />
 						: <Redirect to="/login" />
 					}} />
-					<Route path="/edit" render={()=>{
+					<Route path="/edit" render={(props)=>{
 						return currentUser
-						? <EditProfile currentUser={currentUser} />
+						? <EditProfile {...props} currentUser={currentUser} onUpdateSuccess={this.onLoginSuccess.bind(this)} />
+						: <Redirect to="/login" />
+					}} />
+					<Route path="/delete" render={(props)=>{
+						return currentUser
+						? <Delete currentUser={currentUser} onDeleteSuccess={this.logOut.bind(this)} />
 						: <Redirect to="/login" />
 					}} />
 					<Route path="/" component={Home} />

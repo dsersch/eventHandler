@@ -8,6 +8,7 @@ const Show = (props) => {
 			<h2>{props.currentUser.name}</h2>
 			<h3>{props.currentUser.email}</h3>
 			<Link to="/edit">Update Profile</Link>
+			<Link to="/delete">Delete Account</Link>
 		</div>
 	)
 }
