@@ -10,6 +10,7 @@ import Home from './views/Home'
 import Show from './views/Show'
 import EditProfile from './views/Edit'
 import Delete from './views/Delete'
+import CreateEvent from './views/CreateEvent'
 
 class App extends React.Component {
 	state = {
@@ -51,9 +52,9 @@ class App extends React.Component {
 					<Route path="/signup" render={(props)=>{
 						return <SignUp {...props} onSignUpSuccess={this.onLoginSuccess.bind(this)} />
 					}} />
-					<Route path="/profile" render={()=>{
+					<Route path="/profile" render={(props)=>{
 						return currentUser
-						? <Show currentUser={currentUser} />
+						? <Show {...props} currentUser={currentUser} />
 						: <Redirect to="/login" />
 					}} />
 					<Route path="/edit" render={(props)=>{
@@ -64,6 +65,11 @@ class App extends React.Component {
 					<Route path="/delete" render={(props)=>{
 						return currentUser
 						? <Delete currentUser={currentUser} onDeleteSuccess={this.logOut.bind(this)} />
+						: <Redirect to="/login" />
+					}} />
+					<Route path="/create-event" render={(props)=>{
+						return currentUser
+						? <CreateEvent {...props} currentUser={currentUser} />
 						: <Redirect to="/login" />
 					}} />
 					<Route path="/" component={Home} />
