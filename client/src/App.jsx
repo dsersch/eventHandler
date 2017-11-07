@@ -11,6 +11,8 @@ import Show from './views/Show'
 import EditProfile from './views/Edit'
 import Delete from './views/Delete'
 import CreateEvent from './views/CreateEvent'
+import ShowEvent from './views/ShowEvent'
+import EditEvent from './views/EditEvent'
 
 class App extends React.Component {
 	state = {
@@ -72,6 +74,8 @@ class App extends React.Component {
 						? <CreateEvent {...props} currentUser={currentUser} />
 						: <Redirect to="/login" />
 					}} />
+					<Route path="/show-event/:id" component={ShowEvent} />
+					<Route path="/edit-event/:id" component={EditEvent} />
 					<Route path="/" component={Home} />
 				</Switch>
 			</div>

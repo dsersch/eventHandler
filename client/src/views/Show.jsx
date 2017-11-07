@@ -10,7 +10,7 @@ class Show extends React.Component{
 		}
 	}
 
-	componentDidMount(){
+	getEvents(){
 		axios({
 			method: 'get',
 			url: `/api/users/${this.props.currentUser._id}/events`
@@ -21,6 +21,11 @@ class Show extends React.Component{
 			})
 		})
 	}
+
+	componentDidMount(){
+		this.getEvents()
+	}
+
 
 	render(){
 		return (
@@ -33,8 +38,8 @@ class Show extends React.Component{
 				{this.state.events.map((event, index)=>{
 					return (
 						<div key={event.title} className="userEvents delete-button">
-							<h3 key={event.title}>{event.title}</h3>
-							<Link key={index} to="/delete-event">Remove Event</Link>
+							<Link to={`/show-event/${event._id}`} key={index}>{event.title}</Link>
+							
 						</div>
 					)
 				})}
