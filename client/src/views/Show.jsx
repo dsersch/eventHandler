@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Friends from './Friends'
+import FollowingEvents from './FollowingEvents'
 
 class Show extends React.Component{
 	constructor(props){
@@ -49,7 +50,7 @@ class Show extends React.Component{
 					? <Friends currentUser={this.props.currentUser} />
 					: null
 				}
-				<h2>Hosted Events</h2>
+				<h3>Hosted Events</h3>
 				<ul>
 				{this.state.events.map((event, index)=>{
 					return (
@@ -57,6 +58,7 @@ class Show extends React.Component{
 					)
 				})}
 				</ul>
+				<FollowingEvents currentUser={this.props.currentUser}/>
 			</div>
 		)
 	}
