@@ -40,7 +40,7 @@ class ShowEvent extends React.Component{
         const userId = this.props.currentUser._id
         const creatorId = this.state.creatorId
         console.log('creator id = ' + this.state.creatorId)
-        const { title, body } = this.state.event
+        const { title, body, location, time, date } = this.state.event
         const { id } = this.props.match.params
         if (userId === creatorId) {
             return (
@@ -48,6 +48,9 @@ class ShowEvent extends React.Component{
                     <h1>{title}</h1>
                     <Link to={`/edit-event/${id}`}>Edit Event</Link>
                     <Link to="/" onClick={this.onDeleteClick.bind(this)}>Delete</Link>
+                    <h3>Location: {location}</h3>
+                    <h3>Time: {time}</h3>
+                    <h3>Date: {date}</h3>
                     <p>{body}</p>
                 </div>
             )
