@@ -4,8 +4,12 @@ const
     userSchema = new mongoose.Schema({
         name: { type: String },
         email: { type: String, required: true, unique: true },
-        password: { type: String, required: true }
+        password: { type: String, required: true },
+        following: [{type: mongoose.Schema.Types.ObjectId, ref: "User"}],
+        followers: [{type: mongoose.Schema.Types.ObjectId, ref: "User"}]
     })
+
+userSchema.index({name: 'text'})
 
 // adds a method to a user document object to create a hashed password
 userSchema.methods.generateHash = function(password) {

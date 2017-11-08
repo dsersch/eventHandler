@@ -1,0 +1,46 @@
+import React from 'react'
+import axios from 'axios'
+import SearchUser from './SearchUser'
+
+class Friends extends React.Component{
+    state= {
+        followers: [],
+        following: []
+    }
+
+    componentDidMount(){
+        axios({
+            method: 'get',
+            url: `/api/users/${this.props.currentUser._id}`
+        }).then((res)=>{
+            this.setState({
+                followers: res.data.followers,
+                following: res.data.following
+            })
+        })
+    }
+
+    render(){
+        return (
+            <div className="Friends">
+                <SearchUser />
+                
+                <h3>Followers: {this.state.followers.length}</h3>
+                <ul>
+                    {this.state.followers.map((follower)=>{
+                        return <li key={follower._id}>{follower.name}</li>
+                    })}
+                </ul>
+                <h3>Following: {this.state.following.length}</h3>
+                <ul>
+                    {this.state.following.map((following)=>{
+                        return <li key={following._id}>{following.name}</li>
+                    })}
+                </ul>
+                
+            </div>
+        )
+    }
+}
+
+export default Friends
