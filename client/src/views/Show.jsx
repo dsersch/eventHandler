@@ -18,7 +18,6 @@ class Show extends React.Component{
 			method: 'get',
 			url: `/api/users/${this.props.currentUser._id}/events`
 		}).then((res)=>{
-			console.log(res.data)
 			this.setState({
 				events: res.data
 			})

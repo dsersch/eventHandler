@@ -1,36 +1,45 @@
 import React from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 class FollowingEvents extends React.Component{
     state = {
-        events: []
+        friendEvents: []
     }
 
     componentDidMount(){
         axios({
             method: 'get',
             url: `/api/users/${this.props.currentUser._id}`
-        }).then((res)=>{
-            res.data.following.map((fol)=>{
-                axios({
+        }).then((user)=>{
+            user.data.following.map((following)=>{
+                return axios({
                     method: 'get',
-                    url: `/api/users/${fol._id}/events`
-                }).then((res)=>{
-                    var arr = []
-                    res.data.map((event)=>{
-                        arr.push(event)
+                    url: `/api/users/${following._id}/events`,
+                }).then((evtArr)=>{
+                    evtArr.data.forEach((event)=>{
+                        this.setState({
+                            friendEvents: [
+                                ...this.state.friendEvents, event
+                            ]
+                        })
                     })
-                    console.log(arr)
                 })
             })
         })
     }
 
     render(){
-        console.log(this.state.events)
         return (
             <div className="FollowingEvents">
                 <h3>Friend's Events</h3>
+                <ul>
+                    {this.state.friendEvents.map((event, index)=>{
+                        return (
+                            <li key={event._id}><Link to={`/show-event/${event._id}`} key={index}>{event.title}</Link> hosted by: {event.user.name}</li>
+                        )
+                    })}
+                </ul>
             </div>
         )
     }

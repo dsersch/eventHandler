@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom'
 
 class ShowEvent extends React.Component{
     state = {
-        event: {}
+        event: {},
+        creatorId: '',
     }
 
     componentDidMount(){
@@ -14,7 +15,8 @@ class ShowEvent extends React.Component{
             url: `/api/events/${id}`
         }).then((res)=>{
             this.setState({
-                event: res.data
+                event: res.data,
+                creatorId: res.data.user._id
             })
         })
     }
@@ -35,16 +37,29 @@ class ShowEvent extends React.Component{
     
     
     render(){
+        const userId = this.props.currentUser._id
+        const creatorId = this.state.creatorId
+        console.log('creator id = ' + this.state.creatorId)
         const { title, body } = this.state.event
         const { id } = this.props.match.params
-        return (
-            <div className="ShowEvent">
-                <h1>{title}</h1>
-                <Link to={`/edit-event/${id}`}>Edit Event</Link>
-                <Link to="/" onClick={this.onDeleteClick.bind(this)}>Delete</Link>
-                <p>{body}</p>
-            </div>
-        )
+        if (userId === creatorId) {
+            return (
+                <div className="ShowEvent">
+                    <h1>{title}</h1>
+                    <Link to={`/edit-event/${id}`}>Edit Event</Link>
+                    <Link to="/" onClick={this.onDeleteClick.bind(this)}>Delete</Link>
+                    <p>{body}</p>
+                </div>
+            )
+        } else {
+            return (
+                <div className="ShowEvent">
+                    <h1>{title}</h1>
+                    <p>{body}</p>
+                </div>
+            )
+        }
+        
     }
 }
 

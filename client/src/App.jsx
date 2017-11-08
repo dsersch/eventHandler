@@ -74,7 +74,11 @@ class App extends React.Component {
 						? <CreateEvent {...props} currentUser={currentUser} />
 						: <Redirect to="/login" />
 					}} />
-					<Route path="/show-event/:id" component={ShowEvent} />
+					<Route path="/show-event/:id" render={(props)=>{
+						return currentUser
+						? <ShowEvent {...props} currentUser={currentUser} />
+						: <Redirect to="/login" />
+					}} />
 					<Route path="/edit-event/:id" component={EditEvent} />
 					<Route path="/" component={Home} />
 				</Switch>
