@@ -21,6 +21,7 @@ usersRouter.route('/:id')
     .delete(usersCtrl.destroy)
 
 usersRouter.post('/:id/follow', usersCtrl.follow)
+usersRouter.post('/:id/unfollow', usersCtrl.unfollow)
 
 usersRouter.route('/:id/events')
     .get(userEventsCtrl.index)

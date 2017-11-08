@@ -1,6 +1,5 @@
 import React from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
 
 class SearchUser extends React.Component{
     state = {
@@ -21,7 +20,6 @@ class SearchUser extends React.Component{
 
     onFormSubmit(evt){
         evt.preventDefault()
-        console.log(this.state.fields.search)
         axios({
             method: 'post',
             url: '/api/users/search',
@@ -36,16 +34,33 @@ class SearchUser extends React.Component{
         })
     }
 
+    onAddClick(id){
+        axios({
+            method: 'post',
+            url: `/api/users/${this.props.currentUser._id}/follow`,
+            data: {id: id}
+        }).then((res)=>{
+            this.setState({
+                fields: {
+                    search: ''
+                },
+                results: []
+            })
+            this.props.onAddSuccess()
+        })
+        
+    }
+
     render(){
         return (
             <div className="SearchUser">
                 <form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
-                    <input type="text" placeholder="Find friends..." name="search" value={this.state.field}/>
+                    <input type="text" placeholder="Find friends..." name="search" value={this.state.fields.search}/>
                     <button>Find</button>
                 </form>
                 <ul>
                 {this.state.results.map((result)=>{
-                    return <li key={result._id}>{result.name}<Link to="">+</Link></li>
+                    return <li key={result._id}>{result.name}<button onClick={this.onAddClick.bind(this, result._id)}>+</button></li>
                 })}
                 </ul>
             </div>

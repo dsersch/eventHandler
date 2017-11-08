@@ -78,6 +78,32 @@ module.exports = {
         })
     },
 
+    // unfollow a user
+
+    unfollow: (req, res)=>{
+        User.findById(req.params.id, (err, firstUser)=>{
+            if (err) return res.json({success: false, message: "Could not find first user", err})
+            User.findById(req.body.id, (err, secondUser)=>{
+                if (err) return res.json({success: false, message: "Could not find second user", err})
+                var indexFollowing = firstUser.following.findIndex((el)=>{
+                    return el == req.body.id
+                })
+                var indexFollower = secondUser.followers.findIndex((el)=>{
+                    return el == req.params.id
+                })
+                firstUser.following.splice(indexFollowing, 1)
+                secondUser.followers.splice(indexFollower, 1)
+                firstUser.save((err, updatedFirstUser)=>{
+                    if (err) return res.json({success: false, message: "Failed to save first user", err})
+                    secondUser.save((err, updatedSecondUser)=>{
+                        if (err) return res.json({success: false, message: "Failed to save second user", err})
+                        res.json({success: true, message: "Both Users updated and saved", updatedFirstUser, updatedSecondUser})
+                    })
+                })
+            })
+        }) 
+    },
+
     // login route
     authenticate: (req, res) => {
         User.findOne({email: req.body.email}, (err, user) => {

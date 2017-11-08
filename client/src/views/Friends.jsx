@@ -8,7 +8,7 @@ class Friends extends React.Component{
         following: []
     }
 
-    componentDidMount(){
+    getFollowInfo(){
         axios({
             method: 'get',
             url: `/api/users/${this.props.currentUser._id}`
@@ -20,10 +20,22 @@ class Friends extends React.Component{
         })
     }
 
+    componentDidMount(){
+        this.getFollowInfo()
+    }
+
+    onAddSuccess(){
+        this.getFollowInfo()
+    }
+
+    onDeleteClick(id){
+        
+    }
+
     render(){
         return (
             <div className="Friends">
-                <SearchUser />
+                <SearchUser currentUser={this.props.currentUser} onAddSuccess={this.onAddSuccess.bind(this)} />
                 
                 <h3>Followers: {this.state.followers.length}</h3>
                 <ul>
@@ -34,7 +46,7 @@ class Friends extends React.Component{
                 <h3>Following: {this.state.following.length}</h3>
                 <ul>
                     {this.state.following.map((following)=>{
-                        return <li key={following._id}>{following.name}</li>
+                        return <li key={following._id}>{following.name}<button onClick={this.onDeleteClick.bind(this, following.id)}>Remove</button></li>
                     })}
                 </ul>
                 
