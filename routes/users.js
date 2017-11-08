@@ -20,11 +20,11 @@ usersRouter.route('/:id')
     .patch(usersCtrl.update)
     .delete(usersCtrl.destroy)
 
-usersRouter.post('/:id/follow', usersCtrl.follow)
-usersRouter.post('/:id/unfollow', usersCtrl.unfollow)
-
 usersRouter.route('/:id/events')
     .get(userEventsCtrl.index)
     .post(userEventsCtrl.create)
+
+usersRouter.post('/:id/follow', usersCtrl.follow)
+usersRouter.post('/:id/unfollow', usersCtrl.unfollow)
 
 module.exports = usersRouter

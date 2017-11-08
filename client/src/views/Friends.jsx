@@ -29,7 +29,13 @@ class Friends extends React.Component{
     }
 
     onDeleteClick(id){
-        
+        axios({
+            method: 'post',
+            url: `/api/users/${this.props.currentUser._id}/unfollow`,
+            data: {id: id}
+        }).then((res)=>{
+            this.getFollowInfo()
+        })
     }
 
     render(){
@@ -46,7 +52,7 @@ class Friends extends React.Component{
                 <h3>Following: {this.state.following.length}</h3>
                 <ul>
                     {this.state.following.map((following)=>{
-                        return <li key={following._id}>{following.name}<button onClick={this.onDeleteClick.bind(this, following.id)}>Remove</button></li>
+                        return <li key={following._id}>{following.name}<button onClick={this.onDeleteClick.bind(this, following._id)}>Remove</button></li>
                     })}
                 </ul>
                 
