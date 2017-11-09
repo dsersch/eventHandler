@@ -36,7 +36,17 @@ class FollowingEvents extends React.Component{
                 <ul>
                     {this.state.friendEvents.map((event, index)=>{
                         return (
-                            <li key={event._id}><Link to={`/show-event/${event._id}`} key={index}>{event.title}</Link> hosted by: {event.user.name}</li>
+                            <li key={event._id}><Link 
+                            to={`/show-event/${event._id}`}
+                            key={index}>{event.title}</Link> hosted by: {event.user.name}
+                            {event.attending.map((attendingUser)=>{
+                                if (attendingUser._id === this.props.currentUser._id){
+                                    return <span className="attending" key={event._id}>  Attending</span>
+                                } else {
+                                    return null
+                                }
+                            })}
+                        </li>
                         )
                     })}
                 </ul>

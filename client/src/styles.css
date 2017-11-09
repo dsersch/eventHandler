@@ -10,3 +10,7 @@ a, button {
 .NavBar {
 	margin-bottom: 20px
 }
+
+.attending {
+	color: red;
+}

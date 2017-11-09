@@ -6,7 +6,8 @@ const
         location: {type: String, required: true},
         time: {type: String, required: true},
         date: {type: String, required: true},
-        user: {type: mongoose.Schema.Types.ObjectId, ref: "User"}
+        user: {type: mongoose.Schema.Types.ObjectId, ref: "User"},
+        attending: [{type: mongoose.Schema.Types.ObjectId, ref: "User"}]
     }, {timestamps: true})
 
 module.exports = mongoose.model("UserEvent", UserEventSchema)
