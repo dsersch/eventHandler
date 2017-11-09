@@ -1,5 +1,6 @@
 body {
 	margin: 0px;
+	background: rgb(200, 200, 200)
 }
 
 a, button {
@@ -19,36 +20,30 @@ a {
 
 .NavBar {
 	background: black;
-	height: 40px;
+	height: 55px;
 	padding-left: 20px;
-	padding-top: 0.75rem;
+	padding-top: 1.3rem;
 }
 
 .attending {
-	color: red;
+	color: orangered;
 }
 
 .ProfileInfo {
 	height: 300px;
 	background: grey;
-	color: white;
+	color: black;
 	padding-top: 4rem;
 	padding-left: 4rem;
 }
 
 .ShowNav {
-	height: 40px;
+	height: 45px;
 	background: orangered;
-	padding-top: 0.75rem;
+	padding-top: 0.85rem;
 	padding-left: 4rem;
 }
-.hosted {
-	background: gray;
-}
 
-.friend {
-	background: black;
-}
 
 .navLink {
 	margin-left: 3rem;
@@ -58,11 +53,36 @@ a {
 }
 
 .Footer {
-	position: absolute;
+	position: relative;
 	bottom: 0;
 	width: 100%;
 	height: 40px;
 	background: black;
 	color: white;
 	text-align: right;
+}
+
+input[type='text'], input[type='password'] {
+	background-color: white;
+}
+
+.hostedEventsTitle {
+	background: teal;
+	height: 100px;
+	color: white;
+}
+
+ul {
+	list-style: none;
+}
+
+.friendsColumn {
+	text-align: center;
+}
+
+.SearchUser {
+	width: 30%;
+	display: block;
+	float: right;
+	margin-top: -6px;
 }

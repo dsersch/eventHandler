@@ -1,6 +1,5 @@
 import React from 'react'
 import axios from 'axios'
-import SearchUser from './SearchUser'
 
 class Friends extends React.Component{
     state= {
@@ -24,10 +23,6 @@ class Friends extends React.Component{
         this.getFollowInfo()
     }
 
-    onAddSuccess(){
-        this.getFollowInfo()
-    }
-
     onDeleteClick(id){
         axios({
             method: 'post',
@@ -41,21 +36,24 @@ class Friends extends React.Component{
     render(){
         return (
             <div className="Friends">
-                <SearchUser currentUser={this.props.currentUser} onAddSuccess={this.onAddSuccess.bind(this)} />
-                
-                <h3>Followers: {this.state.followers.length}</h3>
-                <ul>
-                    {this.state.followers.map((follower)=>{
-                        return <li key={follower._id}>{follower.name}</li>
-                    })}
-                </ul>
-                <h3>Following: {this.state.following.length}</h3>
-                <ul>
-                    {this.state.following.map((following)=>{
-                        return <li key={following._id}>{following.name}<button onClick={this.onDeleteClick.bind(this, following._id)}>Remove</button></li>
-                    })}
-                </ul>
-                
+                <div className="row">
+                    <div className="column friendsColumn">
+                        <h3>Followers: {this.state.followers.length}</h3>
+                        <ul>
+                            {this.state.followers.map((follower)=>{
+                                return <li key={follower._id}>{follower.name}</li>
+                            })}
+                        </ul>
+                    </div>
+                    <div className="column friendsColumn">
+                        <h3>Following: {this.state.following.length}</h3>
+                        <ul>
+                            {this.state.following.map((following)=>{
+                                return <li key={following._id}>{following.name}<button onClick={this.onDeleteClick.bind(this, following._id)}>Remove</button></li>
+                            })}
+                        </ul>
+                    </div>
+                </div>
             </div>
         )
     }

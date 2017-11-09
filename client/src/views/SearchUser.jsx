@@ -52,6 +52,7 @@ class SearchUser extends React.Component{
     }
 
     render(){
+        console.log(this.props.currentUser._id)
         return (
             <div className="SearchUser">
                 <form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
