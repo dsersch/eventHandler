@@ -1,5 +1,5 @@
 body {
-	padding: 20px;
+	padding: 0px 20px;
 }
 
 a, button {
@@ -8,7 +8,7 @@ a, button {
 }
 
 .NavBar {
-	margin-bottom: 20px
+	margin-bottom: 20px;
 }
 
 .attending {

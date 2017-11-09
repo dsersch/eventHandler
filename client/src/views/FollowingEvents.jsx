@@ -8,21 +8,16 @@ class FollowingEvents extends React.Component{
     }
 
     componentDidMount(){
-        axios({
-            method: 'get',
-            url: `/api/users/${this.props.currentUser._id}`
-        }).then((user)=>{
-            user.data.following.map((following)=>{
-                return axios({
-                    method: 'get',
-                    url: `/api/users/${following._id}/events`,
-                }).then((evtArr)=>{
-                    evtArr.data.forEach((event)=>{
-                        this.setState({
-                            friendEvents: [
-                                ...this.state.friendEvents, event
-                            ]
-                        })
+        this.props.currentUser.following.map((following)=>{
+            return axios({
+                method: 'get',
+                url: `/api/users/${following}/events`,
+            }).then((evtArr)=>{
+                evtArr.data.forEach((event)=>{
+                    this.setState({
+                        friendEvents: [
+                            ...this.state.friendEvents, event
+                        ]
                     })
                 })
             })

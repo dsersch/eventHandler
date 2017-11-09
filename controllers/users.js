@@ -63,18 +63,28 @@ module.exports = {
     follow: (req, res)=>{
         User.findById(req.params.id, (err, followingUser)=>{
             if (err) return res.json({success: false, message: "Could not find first user"})
-            User.findById(req.body.id, (err, followedUser)=>{
-                if (err) return res.json({success: false, message: "Could not find second user"})
-                followingUser.following.push(req.body.id)
-                followedUser.followers.push(req.params.id)
-                followingUser.save((err, updatedFollowingUser)=>{
-                    if (err) return res.json({success: false, message: "Failed to save following user", err})
-                    followedUser.save((err, updatedFollowedUser)=>{
-                        if (err) return res.json({success: false, message: "Failed to save followed user", err})
-                        res.json({success: true, message: "Both Users updated and saved", updatedFollowingUser, updatedFollowedUser})
+            var flag = false
+            followingUser.following.forEach((id)=>{
+                if (req.body.id == id) {
+                    flag = true
+                }
+            })
+            if (flag) {
+                res.json({success: false, message: "Already following"})
+            } else {
+                User.findById(req.body.id, (err, followedUser)=>{
+                    if (err) return res.json({success: false, message: "Could not find second user"})
+                    followingUser.following.push(req.body.id)
+                    followedUser.followers.push(req.params.id)
+                    followingUser.save((err, updatedFollowingUser)=>{
+                        if (err) return res.json({success: false, message: "Failed to save following user", err})
+                        followedUser.save((err, updatedFollowedUser)=>{
+                            if (err) return res.json({success: false, message: "Failed to save followed user", err})
+                            res.json({success: true, message: "Both Users updated and saved", updatedFollowingUser, updatedFollowedUser})
+                        })
                     })
                 })
-            })  
+            }  
         })
     },
 

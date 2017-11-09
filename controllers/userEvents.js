@@ -50,7 +50,6 @@ module.exports = {
         UserEvent.findById(req.params.id, (err, userEvent)=>{
             if (err) return res.json({success: true, message: "Failed to find Event", err})
             userEvent.attending.forEach((el)=>{
-                console.log(el)
                 if (req.body.id == el) {
                     flag = true
                 }
