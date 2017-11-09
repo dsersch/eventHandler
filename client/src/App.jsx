@@ -13,6 +13,7 @@ import Delete from './views/Delete'
 import CreateEvent from './views/CreateEvent'
 import ShowEvent from './views/ShowEvent'
 import EditEvent from './views/EditEvent'
+import Footer from './Footer'
 
 class App extends React.Component {
 	state = {
@@ -81,6 +82,7 @@ class App extends React.Component {
 					<Route path="/edit-event/:id" component={EditEvent} />
 					<Route path="/" component={Home} />
 				</Switch>
+				<Footer />
 			</div>
 		)
 	}

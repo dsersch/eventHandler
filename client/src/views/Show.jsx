@@ -39,25 +39,38 @@ class Show extends React.Component{
 	render(){
 		return (
 			<div className='Show'>
-				<h1>{this.props.currentUser.name}</h1>
-				<h2>{this.props.currentUser.email}</h2>
-				<Link to="/create-event">Add an Event</Link>
-				<Link to="/edit">Update Profile</Link>
-				<Link to="/delete">Delete Account</Link>
-				<Link to="/" onClick={this.onFriendsClick.bind(this)}>Friends</Link>
+				<div className="ProfileInfo">
+					<h1>{this.props.currentUser.name}</h1>
+					<h2>{this.props.currentUser.email}</h2>
+				</div>
+				<div className="ShowNav">
+					<Link className="navLink" to="/create-event">Add an Event</Link>
+					<Link className="navLink" to="/edit">Update Profile</Link>
+					<Link className="navLink" to="/delete">Delete Account</Link>
+					<Link className="navLink" to="/" onClick={this.onFriendsClick.bind(this)}>Friends</Link>
+				</div>
+				
 				{this.state.showFriends
 					? <Friends currentUser={this.props.currentUser} />
 					: null
 				}
-				<h3>Hosted Events</h3>
-				<ul>
-				{this.state.events.map((event, index)=>{
-					return (
-						<li key={event._id}><Link to={`/show-event/${event._id}`} key={index}>{event.title}</Link></li>
-					)
-				})}
-				</ul>
-				<FollowingEvents currentUser={this.props.currentUser}/>
+				<div className="events">
+					<div className="row">
+						<div className="column hosted">
+						<h3>Hosted Events</h3>
+							<ul>
+							{this.state.events.map((event, index)=>{
+								return (
+									<li key={event._id}><Link to={`/show-event/${event._id}`} key={index}>{event.title}</Link> on {event.date} at {event.time}</li>
+								)
+							})}
+							</ul>
+						</div>
+						<div className="column friend">
+							<FollowingEvents currentUser={this.props.currentUser}/>
+						</div>
+					</div>
+				</div>
 			</div>
 		)
 	}

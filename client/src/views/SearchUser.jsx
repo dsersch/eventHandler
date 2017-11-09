@@ -56,9 +56,8 @@ class SearchUser extends React.Component{
             <div className="SearchUser">
                 <form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
                     <input type="text" placeholder="Find friends..." name="search" value={this.state.fields.search}/>
-                    <button>Find</button>
                 </form>
-                <ul>
+                <ul className="SearchResults">
                 {this.state.results.map((result)=>{
                     return <li key={result._id}>{result.name}<button onClick={this.onAddClick.bind(this, result._id)}>+</button></li>
                 })}
