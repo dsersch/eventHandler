@@ -1,6 +1,12 @@
 import React from 'react'
 import axios from 'axios'
 
+var SectionStyle = {
+	backgroundImage: "url(" + require('../third-background.jpeg') + ")",
+	backgroundSize: '100% 100%',
+	backgroundRepeat: 'no-repeat'
+  };
+
 class CreateEvent extends React.Component{
     state = {
         fields: {
@@ -48,7 +54,7 @@ class CreateEvent extends React.Component{
     render() {
 		const {title, body, location, time, date } = this.state.fields
 		return (
-			<div className='CreateEvent'>
+			<div className='CreateEvent' >
 				<h1>Create Event</h1>
 				<form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
 					<input type="text" placeholder="Title" name="title" value={title} />

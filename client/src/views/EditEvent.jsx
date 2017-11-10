@@ -5,7 +5,10 @@ class EditEvent extends React.Component{
     state = {
         fields: {
             title: '',
-            body: ''
+            body: '',
+            location: '',
+            time: '',
+            date: ''
         }
     }
 
@@ -54,13 +57,16 @@ class EditEvent extends React.Component{
     }
     
     render() {
-        const {title, body} = this.state.fields
+        const {title, body, location, time, date} = this.state.fields
 		return (
 			<div className='EditEvent'>
 				<h1>Edit Event</h1>
 				<form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
 					<input type="text" placeholder="Title" name="title" value={title} />
 					<input type="text" placeholder="Describe the event..." name="body" value={body} />
+                    <input type="text" placeholder="Where is it going down?" name="location" value={location} />
+                    <input type="time" name="time" value={time} />
+                    <input type="date" name="date" value={date} />
 					<button>Update Event</button>
 				</form>
 			</div>

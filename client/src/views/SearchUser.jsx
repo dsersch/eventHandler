@@ -51,16 +51,28 @@ class SearchUser extends React.Component{
         
     }
 
+    onCloseClick(){
+        this.setState({
+            fields: {
+                search: ''
+            },
+            results: []
+        })
+    }
+
     render(){
-        console.log(this.props.currentUser._id)
         return (
             <div className="SearchUser">
                 <form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
                     <input type="text" placeholder="Find friends..." name="search" value={this.state.fields.search}/>
                 </form>
                 <ul className="SearchResults">
+                {this.state.results.length > 0
+                    ? <li onClick={this.onCloseClick.bind(this)}>Close</li>
+                    : null
+                }
                 {this.state.results.map((result)=>{
-                    return <li key={result._id}>{result.name}<button onClick={this.onAddClick.bind(this, result._id)}>+</button></li>
+                    return <li key={result._id}>{result.name}<button className="addButton" onClick={this.onAddClick.bind(this, result._id)}>+</button></li>
                 })}
                 </ul>
             </div>

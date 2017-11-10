@@ -1,6 +1,6 @@
 body {
 	margin: 0px;
-	background: rgb(200, 200, 200)
+	background: rgb(41, 41, 41);
 }
 
 a, button {
@@ -15,7 +15,7 @@ a, button {
 }
 
 a {
-	color: white;
+	color: rgb(53, 135, 223);
 }
 
 .NavBar {
@@ -30,26 +30,32 @@ a {
 }
 
 .ProfileInfo {
-	height: 300px;
+	height: 400px;
 	background: grey;
-	color: black;
+	color: white;
 	padding-top: 4rem;
 	padding-left: 4rem;
 }
 
 .ShowNav {
 	height: 45px;
-	background: orangered;
+	background: black;
 	padding-top: 0.85rem;
 	padding-left: 4rem;
 }
 
 
 .navLink {
+	color: white;
 	margin-left: 3rem;
 }
 .SearchResults {
-	background: rgba(255, 255, 255, 0.379);
+	position: absolute;
+	background: rgba(104, 104, 104, 0.536);
+	border-radius: 7px;
+	color: white;
+	width: 30%;
+	text-align: right;
 }
 
 .Footer {
@@ -66,6 +72,20 @@ input[type='text'], input[type='password'] {
 	background-color: white;
 }
 
+input[type='time'], input[type='date'] {
+	
+    background-color: white;
+    border: 0.1rem solid #d1d1d1;
+    border-radius: .4rem;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+    height: 3.8rem;
+    padding: .6rem 1.0rem;
+    width: 100%;
+}
+
 .hostedEventsTitle {
 	background: teal;
 	height: 100px;
@@ -78,6 +98,7 @@ ul {
 
 .friendsColumn {
 	text-align: center;
+	color: white;
 }
 
 .SearchUser {
@@ -85,4 +106,59 @@ ul {
 	display: block;
 	float: right;
 	margin-top: -6px;
+	margin-right: 20px;
+}
+
+.removeButton, .addButton {
+	background-color: transparent;
+	border: transparent;
+	border-radius: 40px;
+	padding: 0 1rem;
+	height: 30px;
+	font-size: 16;
+	line-height: 1.8rem;
+}
+
+.profileImage {
+	float: right;
+    margin-right: 25%;
+	margin-top: -7%;
+	height: 200px;
+}
+
+.friendsHeader, .eventsBanner {
+	height: 200px;
+	padding-top: 7rem;
+	color: black;
+	text-align: center;
+}
+
+.friendsColumnHeader, .hostedHeader, .friendsEventsHeader {
+	background: black;
+	margin-left: -1rem;
+	width: calc(100% + 2rem);
+	color: white;
+	height: 100px;
+	padding-top: 3rem;
+	margin-bottom: 20px;
+}
+
+.hostedHeader, .friendsEventsHeader {
+	text-align: center;
+}
+
+.friendsUL {
+	text-align: right;
+	color: white;
+}
+
+.hostedUL {
+	color: white;
+}
+
+.CreateEvent, .LogIn, .EditEvent, .EditProfile {
+	color: white;
+	width: 50%;
+	text-align: center;
+	margin: 0 auto;
 }
