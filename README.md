@@ -50,6 +50,7 @@ I struggled the most with React components
 # Unsolved Issues
 
 - Friends list doesn't update when you add a new friend
-- Friends event list doesn't update when you add new friends
+- Friends event list doesnt refresh correctly when you leave the profile view.
+- Home page routing in client
 - lots of little things...
 
