@@ -116,12 +116,11 @@ class Show extends React.Component{
 	}
 
 	onAdd(){
-		this.props.onAddApp()
+		
 	}
 		
 
 	render(){
-		console.log(this.props)
 		return (
 			<div className='Show'>
 				<div className="ProfileInfo" style={sectionStyle}>

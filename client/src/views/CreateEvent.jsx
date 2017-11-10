@@ -1,12 +1,6 @@
 import React from 'react'
 import axios from 'axios'
 
-var SectionStyle = {
-	backgroundImage: "url(" + require('../third-background.jpeg') + ")",
-	backgroundSize: '100% 100%',
-	backgroundRepeat: 'no-repeat'
-  };
-
 class CreateEvent extends React.Component{
     state = {
         fields: {
