@@ -47,6 +47,7 @@ class SearchUser extends React.Component{
                 results: []
             })
             this.props.onAddSuccess()
+            this.props.onAdd()
         })
         
     }

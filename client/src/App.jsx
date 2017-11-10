@@ -75,7 +75,7 @@ class App extends React.Component {
 					}} />
 					<Route path="/show-event/:id" render={(props)=>{
 						return currentUser
-						? <ShowEvent {...props} currentUser={currentUser} />
+						? <ShowEvent {...props} currentUser={currentUser} onAddApp={this.onLoginSuccess.bind(this)}/>
 						: <Redirect to="/login" />
 					}} />
 					<Route path="/edit-event/:id" component={EditEvent} />

@@ -114,9 +114,14 @@ class Show extends React.Component{
 		this.getUser()
 		this.updateFriendsEvents()
 	}
+
+	onAdd(){
+		this.props.onAddApp()
+	}
 		
 
 	render(){
+		console.log(this.props)
 		return (
 			<div className='Show'>
 				<div className="ProfileInfo" style={sectionStyle}>
@@ -129,7 +134,7 @@ class Show extends React.Component{
 					<Link className="navLink" to="/edit">Update Profile</Link>
 					<Link className="navLink" to="/delete">Delete Account</Link>
 					<Link className="navLink" to="/" onClick={this.onFriendsClick.bind(this)}>Friends</Link>
-					<SearchUser currentUser={this.props.currentUser} onAddSuccess={this.onAddSuccess.bind(this)} />
+					<SearchUser currentUser={this.props.currentUser} onAddSuccess={this.onAddSuccess.bind(this)} onAdd={this.onAdd.bind(this)} />
 				</div>
 				<div className="eventsBanner" style={secondSectionStyle}>
 					<h1>Events</h1>
@@ -173,7 +178,7 @@ class Show extends React.Component{
 					</div>	
 				</div>
 				{this.state.showFriends
-					? <Friends  {...this.props} currentUser={this.props.currentUser} onDeleteSuccess={this.onDeleteSuccess.bind(this)} />
+						? <Friends  {...this.props} currentUser={this.props.currentUser} onDeleteSuccess={this.onDeleteSuccess.bind(this)}/>
 					: null
 				}
 			</div>
